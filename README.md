@@ -19,6 +19,7 @@ The purpose of this project to create a Bluetooth controlled robot with a variet
 * Pi Camera
 
 == Reference for the Volume Code in the above program ===
+
 In the above program, some code was borrowed from a previous 4180 lab group. The code can be found here:
 
 https://os.mbed.com/users/sarthakjaiswal/notebook/mbed-music-player/
@@ -28,6 +29,7 @@ This code was used to modify the "waveplayer.h" file, which allowed for the volu
 
 
 == Set Up Pi Camera and Motion Server ==
+
 As the robot moves around, the Raspberry Pi has a Pi Camera connected to stream what the robot sees. To set up the Pi Camera, we used a tutorial referenced in the ECE 4180 Lab 4. https://www.raspberrypi.org/learning/addons-guide/picamera/
 
 The website allowed us to ensure the connected Pi Camera was configured correctly and activated for use within the Raspberry Pi Zero W. Once knowing it was active, we tested the camera using the commands:
