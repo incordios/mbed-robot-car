@@ -5,9 +5,10 @@ This project was build on an Mbed and Raspberry Pi 4.
 
 == Description of Project ==
 
-The purpose of this project to create a Bluetooth controlled robot with a variety of features. A user is able to control its movement through the use of an Apache Webserver. As the robot is moving, it senses how far away it is to objects using a Ultrasonic sensor attached to its front. As the robot detects objects, it will produce a varying loud sound that changes in volume as the robot moves closer or farther away. This robot also utilizes a Raspberry Pi 4 with an attached Raspberry Pi Camera to livestream video feedback on what it sees, as well as the Ultrasonic sensor values, to a web page.
+The purpose of this project to create a Apache webserver controlled robot with a variety of features. A user is able to control its movement through the use of an Apache Webserver. As the robot is moving, it senses how far away it is to objects using a Ultrasonic sensor attached to its front. As the robot detects objects, it will produce a varying loud sound that changes in volume as the robot moves closer or farther away. This robot also utilizes a Raspberry Pi 4 with an attached Raspberry Pi Camera to livestream video feedback on what it sees, as well as the Ultrasonic sensor values, to a web page.
 
 == List of Components Needed ===
+
 * Mbed - Adafruit Bluefruit LE UART Friend module
 * TPA2005D1 Class D Audio Amp
 * uSD card breakout
@@ -25,7 +26,6 @@ In the above program, some code was borrowed from a previous 4180 lab group. The
 https://os.mbed.com/users/sarthakjaiswal/notebook/mbed-music-player/
 
 This code was used to modify the "waveplayer.h" file, which allowed for the volume of the sound (int level variable) to change based on LIDAR values (uint32_t distance variable).
-
 
 
 == Set Up Pi Camera and Motion Server ==
@@ -46,6 +46,7 @@ We set up a server called Motion and we configure the server to run when one typ
 A live streaming video should show up on a person’s web browser. In addition, we configured the motion server to run as a daemon within the Raspberry Pi whenever it boots up, allowing for motion server to run as a background process instead of waiting for user to start the service. All of this was done as described within the Motion Server tutorial.
 
 == Set up Apache2 server ==
+
 For setting up the main web page for streaming the Pi Camera and LIDAR values, we set up an Apache2 server using the tutorial referenced in the ECE 4180 Lab 4. https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md
 
 Once setting up the server, we placed the distance.php file within the apache2 server directory located at /var/www/html.
