@@ -30,32 +30,22 @@ Next, we followed another tutorial from Lab 4 to create the video streaming serv
 
 We set up a Motion server and configured it to run on the Raspberry Pi’s IP address on Port 8081. We had to configure the server to run as a daemon and add the run commands to the rc.local file to make it run as a background process instead of waiting for the user to start it.
 
+<code>sudo service motion restart && sudo motion</code>
+
 ## Apache2 Server
 
 To set up the web page served by an Apache2 server, we followed the tutorial from Lab 4: https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md.
 
 All our .php files were placed in the server directory: /var/www/html.
 
-We made an index.php file that has the code for the web page layout. The left half contains the snippet from the Motion server located at the Pi's IP address at port 8081 and the latest distance sensor readings from the ultrasonic sensor. The right half contains five buttons, one for each motion command, which send a Serial message to the mbed when pressed.
+We made an [index.php](raspberry pi/index.php) file that has the code for the web page layout. The left half contains the snippet from the Motion server located at the Pi's IP address at port 8081 and the latest distance sensor readings from the ultrasonic sensor. The right half contains five buttons, one for each motion command, which send a Serial message to the mbed when pressed.
 
-ultrasonic.php contains the code to read the Serial port, parse any lines that start with "Rear Distance:" and echo them in the suitable <div> on the main web page. A JQuery function call was placed in index.php that invokes the ultrasonic.php function every half a second.
+[ultrasonic.php](raspberry pi/ultrasonic.php) contains the code to read the Serial port, parse any lines that start with "Rear Distance:" and echo them in the suitable div on the main web page. A JQuery function call was placed in index.php that invokes the ultrasonic.php function every half a second.
  
-Each button (forward, backward, left, right, stop) has a corresponding .php file that sends "ctrl1", "ctrl2", "ctrl3", "ctrl4", and "ctrl0" respectively. Ajax is used to call the suitable .php file when a button is pressed.
+Each button ([forward](raspberry pi/forward.php), [backward](raspberry pi/backward.php), [left](raspberry pi/left.php), [right](raspberry pi/right.php), [stop](raspberry pi/stop.php)) has a corresponding .php file that sends "ctrl1", "ctrl2", "ctrl3", "ctrl4", and "ctrl0" to the Serial port respectively. Ajax is used to call the suitable .php file when a button is pressed.
 
-## MBED Component Pinouts
- 
-* uSD Breakout
- 
- |  uSD breakout |      mbed    |
- |---------------|--------------|
- |      CS       |      p29     |
- |      DI       | p5(SPI mosi) |
- |     VCC       |     VOUT     |
- |     SCK       | p7(SPI sclk) |
- |     GND       |     GND      |
- |      DO       | p6(SPI miso) |
- |      CD       |     nc       |
- 
+## Mbed Component Pinouts
+
  * Audio Amp and Speaker
  
  |  mbded  |  Class D Audio Amp  | Speaker | Battery Pack |
@@ -89,12 +79,8 @@ Each button (forward, backward, left, right, stop) has a corresponding .php file
  |    AO1     |        |       +       |              |                |
  |    AO2     |        |       -       |              |                |
  |    PWMA    |   p21  |               |              |                |
- |    AIN1    |   p8   |               |              |                |
- |    AIN2    |   p11  |               |              |                |
+ |    AIN1    |   p11  |               |              |                |
+ |    AIN2    |   p8   |               |              |                |
  |    AO1     |        |               |       +      |                |
  |    AO2     |        |               |       -      |                |
  
-On the Raspberry Pi, run 
- <code>sudo service motion restart && sudo motion</code>
-
-Navigate to `localhost`.
