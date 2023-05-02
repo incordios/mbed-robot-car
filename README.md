@@ -1,32 +1,26 @@
-# Apache Server-Controlled Ultrasonic Robot With Live-Streaming Raspberry Pi
+# Web-Controlled Ultrasonic Robot With Live-Streaming Camera
 
 Georgia Tech ECE 4180 Final Project
 
-This project was build on an Mbed and Raspberry Pi 4. 
+Team Members: Prakhar Mittal, Meghna Jain, Minseung Jung, Nicolas Rios
 
-## Description of Project
+This project was built on an Mbed and Raspberry Pi 4.
 
-The purpose of this project to create a Apache webserver controlled robot with a variety of features. A user is able to control its movement through the use of an Apache Webserver. As the robot is moving, it senses how far away it is to objects using a Ultrasonic sensor attached to its front. As the robot detects objects, it will produce a varying loud sound that changes in volume as the robot moves closer or farther away. This robot also utilizes a Raspberry Pi 4 with an attached Raspberry Pi Camera to livestream video feedback on what it sees, as well as the Ultrasonic sensor values, to a web page.
+## Description
 
-## List of Components Needed
+We have created a robot car that can be controlled using a web page deployed using an Apache 2 web server. The user can press the forward, backward, left, right, or stop buttons on the web page to send motion commands to the car. The sensors on the robot provide 360 degree coverage. First, the robot uses a Raspberry Pi 4 to livestream video feedback from a Pi Camera mounted at the front. Moreover, an Ultrasonic sensor mounted at the rear detects and streams the distance from the closest obstacles behind. If the robot goes too close to an obstacle (<30 cm), a siren sound is played on the speakers and the robot stops automatically.
 
-* Mbed - Adafruit Bluefruit LE UART Friend module
-* TPA2005D1 Class D Audio Amp
-* uSD card breakout
-* Speaker
-* TB6612FNG Dual H-Bridge
-* 5VDC 2A AC adapter, the barrel jack adapter
+## List of Components
+
 * Sparkfun RedBot with Shadow Chassis
-* Raspberry Pi
+* Mbed board
+* Raspberry Pi (we used a Pi 4 but any Pi should work)
 * Pi Camera
-
-## Reference for the Volume Code in the above program
-
-In the above program, some code was borrowed from a previous 4180 lab group. The code can be found here:
-
-https://os.mbed.com/users/sarthakjaiswal/notebook/mbed-music-player/
-
-This code was used to modify the "waveplayer.h" file, which allowed for the volume of the sound (int level variable) to change based on LIDAR values (uint32_t distance variable).
+* TB6612FNG Dual H-Bridge
+* HC-SR04 Ultrasonic Sensor
+* TPA2005D1 Class D Audio Amp
+* Speaker
+* Two 5VDC 2A AC adapters
 
 ## Set Up Pi Camera and Motion Server
 
