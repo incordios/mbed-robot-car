@@ -22,38 +22,27 @@ We have created a robot car that can be controlled using a web page deployed usi
 * Speaker
 * Two 5VDC 2A AC adapters
 
-## Set Up Pi Camera and Motion Server
+## Pi Camera and Web Server
 
-As the robot moves around, the Raspberry Pi has a Pi Camera connected to stream what the robot sees. To set up the Pi Camera, we used a tutorial referenced in the ECE 4180 Lab 4. https://www.raspberrypi.org/learning/addons-guide/picamera/
+To set up the Pi Camera, we used the tutorial from Lab 4: https://www.raspberrypi.org/learning/addons-guide/picamera/.
 
-The website allowed us to ensure the connected Pi Camera was configured correctly and activated for use within the Raspberry Pi Zero W. Once knowing it was active, we tested the camera using the commands:
+Next, we followed another tutorial from Lab 4 to create the video streaming server: http://www.instructables.com/id/How-to-Make-Raspberry-Pi-Webcam-Server-and-Stream-/.
 
-raspistill -o cam.jpg for taking pictures
-raspivid -o vid.h264 for taking videos
+We set up a Motion server and configured it to run on the Raspberry Pi’s IP address on Port 8081. We had to configure the server to run as a daemon and add the run commands to the rc.local file to make it run as a background process instead of waiting for the user to start it.
 
-Once knowing that the Pi Camera works, we utilized another tutorial referenced in the ECE 4180 Lab 4 on creating a video streaming server. http://www.instructables.com/id/How-to-Make-Raspberry-Pi-Webcam-Server-and-Stream-/
+## Apache2 Server
 
-We set up a server called Motion and we configure the server to run when one types in the Raspberry Pi’s IP address followed by the Port 8081. The format of the URL is:
+To set up the web page served by an Apache2 server, we followed the tutorial from Lab 4: https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md.
 
-<code><IP_ADDRESS>:<PORTNUMBER></code>
+All our .php files were placed in the server directory: /var/www/html.
 
-A live streaming video should show up on a person’s web browser. In addition, we configured the motion server to run as a daemon within the Raspberry Pi whenever it boots up, allowing for motion server to run as a background process instead of waiting for user to start the service. All of this was done as described within the Motion Server tutorial.
+We made an index.php file that has the code for the web page layout. The left half contains the snippet from the Motion server located at the Pi's IP address at port 8081 and the latest distance sensor readings from the ultrasonic sensor. The right half contains five buttons, one for each motion command, which send a Serial message to the mbed when pressed.
 
-## Set up Apache2 server
-
-For setting up the main web page for streaming the Pi Camera and LIDAR values, we set up an Apache2 server using the tutorial referenced in the ECE 4180 Lab 4. https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md
-
-Once setting up the server, we placed the distance.php file within the apache2 server directory located at /var/www/html.
-
- Within the same directory, we made another php file called index.php that will create a web page divided into two sections. The top section of the page calls the motion server located at the Raspberry Pi’s IP Address at port 8081. The bottom section of the page calls the the separate distance.php file. The distance.php is called and refreshed using a Javascript function call that calls the php file every 3 seconds. These two sections are separated using the <div> command where it is used to divide the php document into separate sections. As the top section displays the motion server running the video stream, the bottom section refreshes every 3 seconds, where the distance.php file reads the LIDAR distance values and displays it on the web page.
+ultrasonic.php contains the code to read the Serial port, parse any lines that start with "Rear Distance:" and echo them in the suitable <div> on the main web page. A JQuery function call was placed in index.php that invokes the ultrasonic.php function every half a second.
  
- References: 
-https://www.w3schools.com/tags/tag_div.asp
-https://www.w3schools.com/tags/tag_img.asp
-https://www.w3schools.com/jsref/met_win_setinterval.asp
-http://api.jquery.com/load/
+Each button (forward, backward, left, right, stop) has a corresponding .php file that sends "ctrl1", "ctrl2", "ctrl3", "ctrl4", and "ctrl0" respectively. Ajax is used to call the suitable .php file when a button is pressed.
 
-## MBED Componenet Pinouts
+## MBED Component Pinouts
  
 * uSD Breakout
  
