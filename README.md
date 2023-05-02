@@ -4,8 +4,6 @@ Georgia Tech ECE 4180 Final Project
 
 Team Members: Prakhar Mittal, Meghna Jain, Minseung Jung, Nicolas Rios
 
-This project was built on an Mbed and Raspberry Pi 4.
-
 ## Description
 
 We have created a robot car that can be controlled using a web page deployed using an Apache 2 web server. The user can press the forward, backward, left, right, or stop buttons on the web page to send motion commands to the car. The sensors on the robot provide 360 degree coverage. First, the robot uses a Raspberry Pi 4 to livestream video feedback from a Pi Camera mounted at the front. Moreover, an Ultrasonic sensor mounted at the rear detects and streams the distance from the closest obstacles behind. If the robot goes too close to an obstacle (<30 cm), a siren sound is played on the speakers and the robot stops automatically.
@@ -86,7 +84,7 @@ Each button ([forward](raspberry%20pi/forward.php), [backward](raspberry%20pi/ba
 
 ## Schematic
 
-TODO
+<br><img src="schematic.png" style="height:600px">
 
 ## Mbed Code
 
