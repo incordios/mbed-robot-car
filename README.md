@@ -38,17 +38,17 @@ To set up the web page served by an Apache2 server, we followed the tutorial fro
 
 All our .php files were placed in the server directory: /var/www/html.
 
-We made an [index.php](raspberry pi/index.php) file that has the code for the web page layout. The left half contains the snippet from the Motion server located at the Pi's IP address at port 8081 and the latest distance sensor readings from the ultrasonic sensor. The right half contains five buttons, one for each motion command, which send a Serial message to the mbed when pressed.
+We made an [index.php](raspberry%20pi/index.php) file that has the code for the web page layout. The left half contains the snippet from the Motion server located at the Pi's IP address at port 8081 and the latest distance sensor readings from the ultrasonic sensor. The right half contains five buttons, one for each motion command, which send a Serial message to the mbed when pressed.
 
-[ultrasonic.php](raspberry pi/ultrasonic.php) contains the code to read the Serial port, parse any lines that start with "Rear Distance:" and echo them in the suitable div on the main web page. A JQuery function call was placed in index.php that invokes the ultrasonic.php function every half a second.
+[ultrasonic.php](raspberry%20pi/ultrasonic.php) contains the code to read the Serial port, parse any lines that start with "Rear Distance:" and echo them in the suitable div on the main web page. A JQuery function call was placed in index.php that invokes the ultrasonic.php function every half a second.
  
-Each button ([forward](raspberry pi/forward.php), [backward](raspberry pi/backward.php), [left](raspberry pi/left.php), [right](raspberry pi/right.php), [stop](raspberry pi/stop.php)) has a corresponding .php file that sends "ctrl1", "ctrl2", "ctrl3", "ctrl4", and "ctrl0" to the Serial port respectively. Ajax is used to call the suitable .php file when a button is pressed.
+Each button ([forward](raspberry%20pi/forward.php), [backward](raspberry%20pi/backward.php), [left](raspberry%20pi/left.php), [right](raspberry%20pi/right.php), [stop](raspberry%20pi/stop.php)) has a corresponding .php file that sends "ctrl1", "ctrl2", "ctrl3", "ctrl4", and "ctrl0" to the Serial port respectively. Ajax is used to call the suitable .php file when a button is pressed.
 
 ## Mbed Component Pinouts
 
- * Audio Amp and Speaker
+ Audio Amp and Speaker
  
- |  mbded  |  Class D Audio Amp  | Speaker | Battery Pack |
+ |  Mbed   |  Class D Audio Amp  | Speaker | Battery Pack |
  |---------|---------------------|---------|--------------|
  |   GND   |     PWR, IN-        |         |              |
  |         |       PWR+          |         |      5V      |
@@ -56,18 +56,18 @@ Each button ([forward](raspberry pi/forward.php), [backward](raspberry pi/backwa
  |         |       OUT+          |    +    |              |
  |         |       OUT-          |    -    |              |
  
- * Ultrasonic Module
+ Ultrasonic Sensor
  
- |  mbed    |   HC-SR04   |
+ |  Mbed    |   HC-SR04   |
  |----------|-------------|
  |  Vu(5V)  |     Vcc     |
  |   Gnd    |     Gnd     |
  |    p6    |     trig    |
  |    p7    |     echo    |
  
- * H-Bridge and Motors
+ H-Bridge and Motors
  
- |  H-bridge  |  mbed  |  Right Motor  |  Left Motor  |  battery pack  |
+ |  H-Bridge  |  Mbed  |  Right Motor  |  Left Motor  |  Battery Pack  |
  |------------|--------|---------------|--------------|----------------|
  |     VM     |        |               |              |        +       |
  |    VCC     |  VOUT  |               |              |                |
