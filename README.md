@@ -83,4 +83,11 @@ Each button ([forward](raspberry%20pi/forward.php), [backward](raspberry%20pi/ba
  |    AIN2    |   p8   |               |              |                |
  |    AO1     |        |               |       +      |                |
  |    AO2     |        |               |       -      |                |
- 
+
+## Schematic
+
+TODO
+
+## Mbed Code
+
+The code on the Mbed side was relatively simple. RTOS was used to handle the following tasks in parallel: reading values from the ultrasonic sensor and applying emergency stop if needed, playing siren on speaker if emergency stop is applied, and reading ctrl values from Serial and adjusting motor speeds accordingly. The full code can be found [here](mbed%20project/main.cpp).
